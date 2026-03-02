@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - med-net
+
+  app:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8118:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - POCKET_ID_ISSUER=${POCKET_ID_ISSUER}
+      - POCKET_ID_CLIENT_ID=${POCKET_ID_CLIENT_ID}
+      - POCKET_ID_CLIENT_SECRET=${POCKET_ID_CLIENT_SECRET}
+      - POCKET_ID_REDIRECT_URI=${POCKET_ID_REDIRECT_URI}
+      - NTFY_TOPIC=${NTFY_TOPIC}
+      - NTFY_SERVER=${NTFY_SERVER}
+      - SECRET_KEY=${SECRET_KEY}
+    depends_on:
+      - db
+    networks:
+      - med-net
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+
+networks:
+  med-net:

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mb-6 flex justify-between items-center">
+    <h2 class="text-2xl font-bold">Your Medications</h2>
+    <a href="/add-med" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium">+ Add Med</a>
+</div>
+
+{% if medications|length == 0 %}
+    <div class="text-center py-10 text-gray-500">
+        <p>No medications tracked yet.</p>
+        <a href="/add-med" class="text-blue-600 underline">Add your first one</a>
+    </div>
+{% else %}
+    <div class="space-y-4">
+        {% for item in medications %}
+        <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 {% if item.is_low %}border-red-500 bg-red-50{% else %}border-blue-500{% endif %}">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-lg">{{ item.med.brand_name }}</h3>
+                    <p class="text-sm text-gray-500">{{ item.med.generic_name }} • {{ item.med.form }}</p>
+                    <p class="text-xs text-gray-400 mt-1">Take: {{ item.med.pills_per_dose }} pills, {{ item.med.doses_per_day }}x daily</p>
+                </div>
+                <div class="text-right">
+                    <span class="block text-2xl font-bold {% if item.is_low %}text-red-600{% else %}text-blue-600{% endif %}">
+                        {{ item.days_left }} <span class="text-sm font-normal">days</span>
+                    </span>
+                    <span class="text-xs text-gray-500">{{ item.med.current_count }} pills left</span>
+                </div>
+            </div>
+
+            {% if item.is_low %}
+            <div class="mt-3 bg-red-100 text-red-800 text-xs p-2 rounded flex justify-between items-center">
+                <span>⚠️ Low Stock Alert Active</span>
+                <!-- In V2: Button to mark alert as resolved/restocked -->
+            </div>
+            {% endif %}
+
+            <form action="/log-dose/{{ item.med.id }}" method="POST" class="mt-4">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition">
+                    ✅ Log Dose Taken
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}
