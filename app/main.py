@@ -7,12 +7,17 @@ from sqlalchemy.orm import Session
 from httpx import AsyncClient
 from urllib.parse import urlencode
 import os
+import logging
 
 from app.database import engine, get_db, Base
 from app.models import User, Medication, DoseLog
 from app.config import settings
 from app.services.fda_api import search_drugs
 from app.services.scheduler import scheduler
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create Tables
 Base.metadata.create_all(bind=engine)
@@ -35,20 +40,32 @@ async def dashboard(request: Request, db: Session = Depends(get_db)):
     if not user:
         return RedirectResponse(url="/login")
 
-    # Fetch user's meds
-    meds = db.query(Medication).filter(Medication.owner_id == user['id']).all()
+    # Fetch user's meds with optimized query
+    logger.info(f"Fetching medications for user {user['id']}")
+    try:
+        meds = db.query(Medication).filter(Medication.owner_id == user['id']).all()
+        logger.info(f"Found {len(meds)} medications for user {user['id']}")
+    except Exception as e:
+        logger.error(f"Error fetching medications for user {user['id']}: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching medications")
 
-    # Calculate stats for template
+    # Calculate stats for template with error handling
     med_stats = []
     for m in meds:
-        daily = m.pills_per_dose * m.doses_per_day
-        days_left = m.current_count / daily if daily > 0 else 999
-        med_stats.append({
-            "med": m,
-            "days_left": round(days_left, 1),
-            "is_low": days_left <= m.alert_threshold_days
-        })
+        try:
+            daily = m.pills_per_dose * m.doses_per_day
+            days_left = m.current_count / daily if daily > 0 else 999
+            med_stats.append({
+                "med": m,
+                "days_left": round(days_left, 1),
+                "is_low": days_left <= m.alert_threshold_days
+            })
+        except Exception as e:
+            logger.error(f"Error calculating stats for medication {m.id}: {e}")
+            # Skip problematic medication but continue processing others
+            continue
 
+    logger.info(f"Calculated stats for {len(med_stats)} medications")
     return templates.TemplateResponse("dashboard.html", {
         "request": request,
         "user": user,
@@ -168,19 +185,44 @@ async def log_dose(med_id: int, request: Request, db: Session = Depends(get_db))
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
 
-    med = db.query(Medication).filter(Medication.id == med_id).first()
+    logger.info(f"Logging dose for medication ID {med_id} by user {user['id']}")
+    
+    try:
+        # Use a single query with proper error handling
+        med = db.query(Medication).filter(Medication.id == med_id).first()
 
-    if not med:
-        raise HTTPException(status_code=404, detail="Medication not found")
+        if not med:
+            logger.warning(f"Medication ID {med_id} not found for user {user['id']}")
+            raise HTTPException(status_code=404, detail="Medication not found")
 
-    # Decrement count
-    if med.current_count >= med.pills_per_dose:
-        med.current_count -= med.pills_per_dose
+        # Check ownership
+        if med.owner_id != user['id']:
+            logger.warning(f"User {user['id']} attempted to access medication {med_id} owned by another user")
+            raise HTTPException(status_code=403, detail="Access denied")
+            
+        # Decrement count with validation
+        if med.current_count >= med.pills_per_dose:
+            med.current_count -= med.pills_per_dose
+            
+            # Update the last_taken timestamp if needed
+            # med.last_taken = datetime.utcnow()  # Uncomment if tracking last taken time
 
-        # Log it
-        log = DoseLog(medication_id=med.id, logged_by_id=user['id'], taken=True)
-        db.add(log)
-        db.commit()
+            # Log it
+            log = DoseLog(medication_id=med.id, logged_by_id=user['id'], taken=True)
+            db.add(log)
+            db.commit()
+            db.refresh(med)  # Refresh to ensure we have the latest data
+            
+            logger.info(f"Dose successfully logged for medication {med.id}, new count: {med.current_count}")
+        else:
+            logger.warning(f"Insufficient pills to log dose for medication {med.id}. Current count: {med.current_count}, required: {med.pills_per_dose}")
+    except HTTPException:
+        # Re-raise HTTP exceptions
+        raise
+    except Exception as e:
+        logger.error(f"Error logging dose for medication {med_id}: {e}")
+        db.rollback()  # Rollback in case of error
+        raise HTTPException(status_code=500, detail="Error logging dose")
 
     return RedirectResponse(url="/", status_code=303)
 
