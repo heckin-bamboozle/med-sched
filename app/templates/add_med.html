@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Add Medication</h2>
+
+<!-- Search Form -->
+<form action="/add-med" method="GET" class="mb-6 flex gap-2">
+    <input type="text" name="q" value="{{ query or '' }}" placeholder="Search Brand or Generic (e.g. Lipitor)"
+           class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Search</button>
+</form>
+
+{% if results %}
+<div class="space-y-3 mb-8">
+    <h3 class="font-semibold text-gray-600">Select from FDA Results:</h3>
+    {% for res in results %}
+    <div onclick="fillForm('{{ res.brand_name }}', '{{ res.generic_name }}', '{{ res.ndc }}')"
+         class="bg-white p-3 rounded-lg shadow cursor-pointer hover:bg-blue-50 border border-transparent hover:border-blue-300 transition">
+        <div class="font-bold">{{ res.brand_name }}</div>
+        <div class="text-sm text-gray-600">{{ res.generic_name }}</div>
+        <div class="text-xs text-gray-400">NDC: {{ res.ndc }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Entry Form -->
+<form action="/save-med" method="POST" class="bg-white p-4 rounded-xl shadow space-y-4">
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Brand Name</label>
+        <input type="text" name="brand_name" required class="w-full p-2 border rounded mt-1">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Generic Name</label>
+        <input type="text" name="generic_name" required class="w-full p-2 border rounded mt-1">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">NDC Code</label>
+        <input type="text" name="ndc_code" required class="w-full p-2 border rounded mt-1">
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Pills per Dose</label>
+            <input type="number" name="pills_per_dose" value="1" required class="w-full p-2 border rounded mt-1">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Doses per Day</label>
+            <input type="number" name="doses_per_day" value="1" required class="w-full p-2 border rounded mt-1">
+        </div>
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Current Pill Count</label>
+        <input type="number" name="current_count" required class="w-full p-2 border rounded mt-1">
+    </div>
+
+    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold">
+        Save Medication
+    </button>
+</form>
+
+<script>
+function fillForm(brand, generic, ndc) {
+    document.querySelector('[name="brand_name"]').value = brand;
+    document.querySelector('[name="generic_name"]').value = generic;
+    document.querySelector('[name="ndc_code"]').value = ndc;
+    window.scrollTo(0, document.body.scrollHeight);
+}
+</script>
+{% endblock %}
