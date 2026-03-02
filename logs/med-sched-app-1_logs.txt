@@ -1,0 +1,616 @@
+2026-03-02T00:44:19.205127359Z Traceback (most recent call last):
+2026-03-02T00:44:19.205150319Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:19.205166129Z     sys.exit(main())
+2026-03-02T00:44:19.205173539Z              ^^^^^^
+2026-03-02T00:44:19.205180439Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:19.205347167Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:19.205362487Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.205377526Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:19.205545154Z     rv = self.invoke(ctx)
+2026-03-02T00:44:19.205558814Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.205565934Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:19.205698052Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:19.205712372Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.205720162Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:19.205824891Z     return callback(*args, **kwargs)
+2026-03-02T00:44:19.205834361Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.205841131Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:19.205909560Z     run(
+2026-03-02T00:44:19.205915970Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:19.205986639Z     server.run()
+2026-03-02T00:44:19.205997259Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:19.206035138Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:19.206051498Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206057968Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:19.206105907Z     return runner.run(main)
+2026-03-02T00:44:19.206112627Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206117967Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:19.206156887Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:19.206166237Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206174936Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:19.206243106Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:19.206271535Z     config.load()
+2026-03-02T00:44:19.206286285Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:19.206362974Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:19.206387774Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206398944Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:19.206431903Z     raise exc from None
+2026-03-02T00:44:19.206441593Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:19.206472593Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:19.206487223Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206493543Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:19.206536782Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:19.206564402Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:19.206571272Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:19.206577062Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:19.206582762Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:19.206588231Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:19.206593981Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:19.206600151Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:19.206608371Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:19.206615131Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:19.206620561Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:19.206643861Z     from app.config import settings
+2026-03-02T00:44:19.206650431Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:19.206677150Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:19.206683900Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:20.074433559Z Traceback (most recent call last):
+2026-03-02T00:44:20.074452909Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:20.074461489Z     sys.exit(main())
+2026-03-02T00:44:20.074468229Z              ^^^^^^
+2026-03-02T00:44:20.074473639Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:20.074705436Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:20.074719886Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.074726976Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:20.074935823Z     rv = self.invoke(ctx)
+2026-03-02T00:44:20.074957783Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.074970973Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:20.075160960Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:20.075182190Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075189580Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:20.075333698Z     return callback(*args, **kwargs)
+2026-03-02T00:44:20.075345768Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075351548Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:20.075447547Z     run(
+2026-03-02T00:44:20.075461207Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:20.075529426Z     server.run()
+2026-03-02T00:44:20.075541706Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:20.075574775Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:20.075585925Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075591895Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:20.075640694Z     return runner.run(main)
+2026-03-02T00:44:20.075648094Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075653674Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:20.075704424Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:20.075714274Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075720303Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:20.075781243Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:20.075818982Z     config.load()
+2026-03-02T00:44:20.075830532Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:20.075916761Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:20.075937161Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.075951271Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:20.075989360Z     raise exc from None
+2026-03-02T00:44:20.076005260Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:20.076048849Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:20.076066499Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.076072349Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:20.076126008Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:20.076142888Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:20.076149188Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:20.076155078Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:20.076161278Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:20.076167048Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:20.076173018Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:20.076178548Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:20.076183988Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:20.076189798Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:20.076200557Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:20.076238647Z     from app.config import settings
+2026-03-02T00:44:20.076246867Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:20.076271457Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:20.076277977Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:21.021902980Z Traceback (most recent call last):
+2026-03-02T00:44:21.021932580Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:21.021943879Z     sys.exit(main())
+2026-03-02T00:44:21.021951219Z              ^^^^^^
+2026-03-02T00:44:21.021962519Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:21.022098308Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:21.022119347Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.022133177Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:21.022382654Z     rv = self.invoke(ctx)
+2026-03-02T00:44:21.022425994Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.022431604Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:21.022686340Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:21.022714420Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.022721790Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:21.022894778Z     return callback(*args, **kwargs)
+2026-03-02T00:44:21.022920338Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.022927127Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:21.023078006Z     run(
+2026-03-02T00:44:21.023090455Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:21.023186774Z     server.run()
+2026-03-02T00:44:21.023194174Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:21.023264813Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:21.023294403Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023300973Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:21.023359572Z     return runner.run(main)
+2026-03-02T00:44:21.023366312Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023378522Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:21.023423621Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:21.023432251Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023438311Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:21.023497670Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:21.023537120Z     config.load()
+2026-03-02T00:44:21.023551860Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:21.023627729Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:21.023641849Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023648559Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:21.023675608Z     raise exc from None
+2026-03-02T00:44:21.023682898Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:21.023716578Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:21.023730837Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023737407Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:21.023772557Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:21.023794287Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:21.023800947Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:21.023807497Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:21.023812096Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:21.023816316Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:21.023821296Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:21.023830366Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:21.023841026Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:21.023847756Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:21.023854646Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:21.023880266Z     from app.config import settings
+2026-03-02T00:44:21.023887506Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:21.023913485Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:21.023920215Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:22.167190893Z Traceback (most recent call last):
+2026-03-02T00:44:22.167215583Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:22.167243203Z     sys.exit(main())
+2026-03-02T00:44:22.167255173Z              ^^^^^^
+2026-03-02T00:44:22.167261513Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:22.167473090Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:22.167502150Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.167515490Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:22.167719887Z     rv = self.invoke(ctx)
+2026-03-02T00:44:22.167736307Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.167743827Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:22.167942244Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:22.167955144Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.167960904Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:22.168095182Z     return callback(*args, **kwargs)
+2026-03-02T00:44:22.168108062Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.168114932Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:22.168192451Z     run(
+2026-03-02T00:44:22.168202081Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:22.168284810Z     server.run()
+2026-03-02T00:44:22.168294840Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:22.168339819Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:22.168360189Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.168366459Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:22.168435448Z     return runner.run(main)
+2026-03-02T00:44:22.168450578Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.168461508Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:22.168502137Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:22.168521647Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.168529947Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:22.168593966Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:22.168644696Z     config.load()
+2026-03-02T00:44:22.168658705Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:22.168818863Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:22.168847783Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.168853123Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:22.168924782Z     raise exc from None
+2026-03-02T00:44:22.168969241Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:22.169023911Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:22.169047880Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.169056330Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:22.169140719Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:22.169171929Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:22.169179289Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:22.169185199Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:22.169190719Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:22.169196059Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:22.169201339Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:22.169206559Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:22.169211808Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:22.169234868Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:22.169246668Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:22.169273958Z     from app.config import settings
+2026-03-02T00:44:22.169280428Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:22.169318547Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:22.169327707Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:23.688818679Z Traceback (most recent call last):
+2026-03-02T00:44:23.688848138Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:23.688860278Z     sys.exit(main())
+2026-03-02T00:44:23.688866418Z              ^^^^^^
+2026-03-02T00:44:23.688871618Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:23.689078295Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:23.689089275Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689095215Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:23.689253553Z     rv = self.invoke(ctx)
+2026-03-02T00:44:23.689267183Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689273983Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:23.689423401Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:23.689440341Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689447041Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:23.689551070Z     return callback(*args, **kwargs)
+2026-03-02T00:44:23.689560219Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689566079Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:23.689635989Z     run(
+2026-03-02T00:44:23.689642678Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:23.689713578Z     server.run()
+2026-03-02T00:44:23.689724327Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:23.689760457Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:23.689777557Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689784087Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:23.689828906Z     return runner.run(main)
+2026-03-02T00:44:23.689837266Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689843116Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:23.689890215Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:23.689930145Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.689938195Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:23.690000724Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:23.690044223Z     config.load()
+2026-03-02T00:44:23.690057673Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:23.690142622Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:23.690176802Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.690189332Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:23.690197362Z     raise exc from None
+2026-03-02T00:44:23.690203291Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:23.690229201Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:23.690235501Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.690240651Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:23.690286510Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:23.690327740Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:23.690340190Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:23.690347680Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:23.690354780Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:23.690361169Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:23.690379909Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:23.690387559Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:23.690394149Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:23.690401649Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:23.690408049Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:23.690414549Z     from app.config import settings
+2026-03-02T00:44:23.690420919Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:23.690427609Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:23.690434269Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:26.007299826Z Traceback (most recent call last):
+2026-03-02T00:44:26.007322976Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:26.007332166Z     sys.exit(main())
+2026-03-02T00:44:26.007338076Z              ^^^^^^
+2026-03-02T00:44:26.007343166Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:26.007530494Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:26.007544383Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.007551173Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:26.007714151Z     rv = self.invoke(ctx)
+2026-03-02T00:44:26.007726411Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.007732001Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:26.007873379Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:26.007883039Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.007888749Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:26.008000158Z     return callback(*args, **kwargs)
+2026-03-02T00:44:26.008009658Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008019878Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:26.008087187Z     run(
+2026-03-02T00:44:26.008093327Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:26.008176466Z     server.run()
+2026-03-02T00:44:26.008183566Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:26.008213325Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:26.008231055Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008237195Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:26.008285864Z     return runner.run(main)
+2026-03-02T00:44:26.008291914Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008297084Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:26.008334904Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:26.008350233Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008356223Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:26.008439232Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:26.008474372Z     config.load()
+2026-03-02T00:44:26.008487472Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:26.008567101Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:26.008578541Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008587071Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:26.008617970Z     raise exc from None
+2026-03-02T00:44:26.008624380Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:26.008660230Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:26.008667370Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008676030Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:26.008711529Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:26.008733719Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:26.008743209Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:26.008751189Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:26.008756859Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:26.008762249Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:26.008767618Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:26.008773348Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:26.008781178Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:26.008790718Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:26.008798808Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:26.008820198Z     from app.config import settings
+2026-03-02T00:44:26.008827208Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:26.008854517Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:26.008862267Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:29.940153139Z Traceback (most recent call last):
+2026-03-02T00:44:29.940178109Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:29.940190459Z     sys.exit(main())
+2026-03-02T00:44:29.940197729Z              ^^^^^^
+2026-03-02T00:44:29.940203059Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:29.940356107Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:29.940382506Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.940392246Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:29.940534895Z     rv = self.invoke(ctx)
+2026-03-02T00:44:29.940543944Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.940549384Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:29.940706832Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:29.940720942Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.940729352Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:29.940816831Z     return callback(*args, **kwargs)
+2026-03-02T00:44:29.940841971Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.940864760Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:29.940904500Z     run(
+2026-03-02T00:44:29.940911720Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:29.940985379Z     server.run()
+2026-03-02T00:44:29.940995599Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:29.941028958Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:29.941046518Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941053158Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:29.941096758Z     return runner.run(main)
+2026-03-02T00:44:29.941107597Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941114497Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:29.941149307Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:29.941160367Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941166307Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:29.941238036Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:29.941271295Z     config.load()
+2026-03-02T00:44:29.941277335Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:29.941366694Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:29.941381274Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941387394Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:29.941432913Z     raise exc from None
+2026-03-02T00:44:29.941447303Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:29.941464923Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:29.941476723Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941482543Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:29.941526502Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:29.941539752Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:29.941548502Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:29.941557272Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:29.941565492Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:29.941573812Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:29.941589461Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:29.941599811Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:29.941605571Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:29.941611161Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:29.941616701Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:29.941634091Z     from app.config import settings
+2026-03-02T00:44:29.941641611Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:29.941668830Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:29.941684970Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:37.066945610Z Traceback (most recent call last):
+2026-03-02T00:44:37.066969530Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:37.066980430Z     sys.exit(main())
+2026-03-02T00:44:37.066987120Z              ^^^^^^
+2026-03-02T00:44:37.066992730Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:37.067190527Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:37.067205977Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.067213147Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:37.067388335Z     rv = self.invoke(ctx)
+2026-03-02T00:44:37.067411335Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.067417864Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:37.067571493Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:37.067593522Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.067599892Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:37.067742150Z     return callback(*args, **kwargs)
+2026-03-02T00:44:37.067759890Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.067773630Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:37.067832499Z     run(
+2026-03-02T00:44:37.067839219Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:37.067911748Z     server.run()
+2026-03-02T00:44:37.067932978Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:37.067957198Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:37.067975918Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.067982827Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:37.068026237Z     return runner.run(main)
+2026-03-02T00:44:37.068044157Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.068051197Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:37.068121936Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:37.068142055Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.068148245Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:37.068211555Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:37.068251784Z     config.load()
+2026-03-02T00:44:37.068260294Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:37.068342043Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:37.068356223Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.068362263Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:37.068402932Z     raise exc from None
+2026-03-02T00:44:37.068409352Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:37.068440062Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:37.068454162Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.068460042Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:37.068500271Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:37.068539961Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:37.068546761Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:37.068552540Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:37.068558100Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:37.068563410Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:37.068568640Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:37.068573880Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:37.068579090Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:37.068587740Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:37.068593900Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:37.068623390Z     from app.config import settings
+2026-03-02T00:44:37.068629620Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:37.068677239Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:37.068699019Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:44:50.583304304Z Traceback (most recent call last):
+2026-03-02T00:44:50.583323294Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:44:50.583350984Z     sys.exit(main())
+2026-03-02T00:44:50.583365454Z              ^^^^^^
+2026-03-02T00:44:50.583380663Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:44:50.583553461Z     return self.main(*args, **kwargs)
+2026-03-02T00:44:50.583570861Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.583578481Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:44:50.583759139Z     rv = self.invoke(ctx)
+2026-03-02T00:44:50.583767559Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.583773079Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:44:50.583932867Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:44:50.583963876Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.583973816Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:44:50.584074485Z     return callback(*args, **kwargs)
+2026-03-02T00:44:50.584084625Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584090805Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:44:50.584175434Z     run(
+2026-03-02T00:44:50.584188784Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:44:50.584259383Z     server.run()
+2026-03-02T00:44:50.584271803Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:44:50.584315292Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:44:50.584332512Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584339102Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:44:50.584396381Z     return runner.run(main)
+2026-03-02T00:44:50.584409511Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584416861Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:44:50.584456941Z     return self._loop.run_until_complete(task)
+2026-03-02T00:44:50.584473440Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584479620Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:44:50.584542659Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:44:50.584589879Z     config.load()
+2026-03-02T00:44:50.584604339Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:44:50.584693738Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:44:50.584710587Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584717497Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:44:50.584749477Z     raise exc from None
+2026-03-02T00:44:50.584756947Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:44:50.584797326Z     module = importlib.import_module(module_str)
+2026-03-02T00:44:50.584813776Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584819886Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:44:50.584860256Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:44:50.584890845Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:44:50.584896935Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:44:50.584902505Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:44:50.584908025Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:44:50.584913375Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:44:50.584918615Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:44:50.584924215Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:44:50.584929485Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:44:50.584941194Z     from app.database import engine, get_db, Base
+2026-03-02T00:44:50.584949324Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:44:50.584988534Z     from app.config import settings
+2026-03-02T00:44:50.584994954Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:44:50.585028553Z     from pydantic_settings import BaseSettings
+2026-03-02T00:44:50.585034963Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:45:16.874996857Z Traceback (most recent call last):
+2026-03-02T00:45:16.875021427Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:45:16.875032787Z     sys.exit(main())
+2026-03-02T00:45:16.875041437Z              ^^^^^^
+2026-03-02T00:45:16.875048337Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:45:16.875223415Z     return self.main(*args, **kwargs)
+2026-03-02T00:45:16.875242954Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.875252614Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:45:16.875439092Z     rv = self.invoke(ctx)
+2026-03-02T00:45:16.875453482Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.875459252Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:45:16.875601360Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:45:16.875627110Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.875634379Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:45:16.875740438Z     return callback(*args, **kwargs)
+2026-03-02T00:45:16.875753868Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.875760948Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:45:16.875811357Z     run(
+2026-03-02T00:45:16.875818397Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:45:16.875891926Z     server.run()
+2026-03-02T00:45:16.875901006Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:45:16.875932116Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:45:16.875949496Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.875957305Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:45:16.876000955Z     return runner.run(main)
+2026-03-02T00:45:16.876007585Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.876012795Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:45:16.876053144Z     return self._loop.run_until_complete(task)
+2026-03-02T00:45:16.876070444Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.876083354Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:45:16.876125503Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:45:16.876169623Z     config.load()
+2026-03-02T00:45:16.876182983Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:45:16.876253092Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:45:16.876263342Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.876270262Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:45:16.876299321Z     raise exc from None
+2026-03-02T00:45:16.876306391Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:45:16.876340721Z     module = importlib.import_module(module_str)
+2026-03-02T00:45:16.876356971Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.876379670Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:45:16.876404530Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:45:16.876429960Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:45:16.876437779Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:45:16.876443799Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:45:16.876449429Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:45:16.876454939Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:45:16.876460329Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:45:16.876465729Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:45:16.876471149Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:45:16.876477839Z     from app.database import engine, get_db, Base
+2026-03-02T00:45:16.876483259Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:45:16.876510669Z     from app.config import settings
+2026-03-02T00:45:16.876518518Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:45:16.876542778Z     from pydantic_settings import BaseSettings
+2026-03-02T00:45:16.876549488Z ModuleNotFoundError: No module named 'pydantic_settings'
+2026-03-02T00:46:08.815258175Z Traceback (most recent call last):
+2026-03-02T00:46:08.815283495Z   File "/usr/local/bin/uvicorn", line 8, in <module>
+2026-03-02T00:46:08.815292955Z     sys.exit(main())
+2026-03-02T00:46:08.815299065Z              ^^^^^^
+2026-03-02T00:46:08.815304505Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1485, in __call__
+2026-03-02T00:46:08.815520552Z     return self.main(*args, **kwargs)
+2026-03-02T00:46:08.815536132Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.815543152Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1406, in main
+2026-03-02T00:46:08.815714100Z     rv = self.invoke(ctx)
+2026-03-02T00:46:08.815725930Z          ^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.815733190Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+2026-03-02T00:46:08.815895848Z     return ctx.invoke(self.callback, **ctx.params)
+2026-03-02T00:46:08.815902487Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.815908227Z   File "/usr/local/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+2026-03-02T00:46:08.816035116Z     return callback(*args, **kwargs)
+2026-03-02T00:46:08.816059636Z            ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816073755Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 418, in main
+2026-03-02T00:46:08.816154274Z     run(
+2026-03-02T00:46:08.816162104Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/main.py", line 587, in run
+2026-03-02T00:46:08.816236293Z     server.run()
+2026-03-02T00:46:08.816249303Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 62, in run
+2026-03-02T00:46:08.816300443Z     return asyncio.run(self.serve(sockets=sockets))
+2026-03-02T00:46:08.816328292Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816336472Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 190, in run
+2026-03-02T00:46:08.816394191Z     return runner.run(main)
+2026-03-02T00:46:08.816404841Z            ^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816412541Z   File "/usr/local/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-03-02T00:46:08.816450951Z     return self._loop.run_until_complete(task)
+2026-03-02T00:46:08.816457201Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816462910Z   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-03-02T00:46:08.816535070Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/server.py", line 69, in serve
+2026-03-02T00:46:08.816573079Z     config.load()
+2026-03-02T00:46:08.816580399Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/config.py", line 458, in load
+2026-03-02T00:46:08.816667688Z     self.loaded_app = import_from_string(self.app)
+2026-03-02T00:46:08.816675238Z                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816680658Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 24, in import_from_string
+2026-03-02T00:46:08.816717007Z     raise exc from None
+2026-03-02T00:46:08.816724327Z   File "/usr/local/lib/python3.11/site-packages/uvicorn/importer.py", line 21, in import_from_string
+2026-03-02T00:46:08.816760357Z     module = importlib.import_module(module_str)
+2026-03-02T00:46:08.816775397Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816781537Z   File "/usr/local/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-03-02T00:46:08.816823256Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-03-02T00:46:08.816845946Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-03-02T00:46:08.816852086Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-03-02T00:46:08.816857566Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-03-02T00:46:08.816862916Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-03-02T00:46:08.816868165Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-03-02T00:46:08.816879445Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-03-02T00:46:08.816889185Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-03-02T00:46:08.816895085Z   File "/code/app/main.py", line 11, in <module>
+2026-03-02T00:46:08.816900975Z     from app.database import engine, get_db, Base
+2026-03-02T00:46:08.816906905Z   File "/code/app/database.py", line 4, in <module>
+2026-03-02T00:46:08.816944185Z     from app.config import settings
+2026-03-02T00:46:08.816951244Z   File "/code/app/config.py", line 2, in <module>
+2026-03-02T00:46:08.816973964Z     from pydantic_settings import BaseSettings
+2026-03-02T00:46:08.816980594Z ModuleNotFoundError: No module named 'pydantic_settings'
